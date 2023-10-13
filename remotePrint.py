@@ -21,21 +21,18 @@ command_executor='http://localhost:4444',
 options=options
 )
 
-driver.maximize_window()
-
-driver.get("file:///home/seluser/source.pdf")
-
-time.sleep(5)
-
-driver.execute_script('window.print();')
-
-time.sleep(5)
-
-print("Open local")
-driver.get("file:///home/seluser/result.pdf")
-
-time.sleep(5)
-
-driver.quit()
+try: 
+    driver.maximize_window()
+    driver.get("file:///home/seluser/source.pdf")
+    time.sleep(5)
+    driver.execute_script('window.print();')
+    time.sleep(5)
+    print("Open local printed")
+    driver.get("file:///home/seluser/result.pdf")
+    time.sleep(5)
+except Exception as err:
+    print("Exception: file transformaion error:", err)
+finally:
+    driver.quit()
 
 print("Test Execution Successfully Completed!")
